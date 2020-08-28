@@ -13,6 +13,7 @@ namespace NikosPetShop.Core.ApplicationServices
         Pet CreatePet(Pet pet);
         List<Pet> GetPets();
         List<Pet> GetAllPetsByName(string name);
+        List<Pet> GetAllPetsBySpecies(Species species);
         Pet FindPetById(int id);
         Pet UpdatePet(Pet petUpdate);
         Pet DeletePet(int id);

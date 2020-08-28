@@ -74,6 +74,12 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             return _petRepo.Delete(id);
         }
 
-      
+        public List<Pet> GetAllPetsBySpecies(Species species)
+        {
+            var list = _petRepo.ReadAllPets();
+            var queryContinued = list.Where(pet => pet.TypeOfSpecies.Equals(species));
+            queryContinued.OrderBy(pet => pet.Name);
+            return queryContinued.ToList();
+        }
     }
 }
