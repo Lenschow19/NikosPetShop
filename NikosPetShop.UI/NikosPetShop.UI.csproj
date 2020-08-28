@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NikosPetShop.Core.Entity\NikosPetShop.Core.Entity.csproj" />
+    <ProjectReference Include="..\NikosPetShop.Core\NikosPetShop.Core.csproj" />
+    <ProjectReference Include="..\NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Static.Data.csproj" />
+  </ItemGroup>
+
+</Project>
