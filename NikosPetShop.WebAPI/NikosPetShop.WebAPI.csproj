@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NikosPetShop.Core.Entity\NikosPetShop.Core.Entity.csproj" />
+    <ProjectReference Include="..\NikosPetShop.Core\NikosPetShop.Core.csproj" />
+    <ProjectReference Include="..\NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Static.Data.csproj" />
+  </ItemGroup>
+
+
+</Project>
