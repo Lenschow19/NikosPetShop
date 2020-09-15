@@ -11,13 +11,13 @@ namespace NikosPetShop.Core.DomainServices
         
 
         //Create Data
-        Pet Create(Pet pet);
+        Pet CreatePet(Pet pet);
         //Read Data
-        Pet ReadById(int id);
+        Pet ReadPetById(int id);
         IEnumerable<Pet> ReadAllPets();
         //Update Data
-        Pet Update(Pet petUpdate);
+        Pet UpdatePet(Pet petUpdate);
         //Delete Data
-        Pet Delete(int id);
+        Pet DeletePet(int id);
     }
 }

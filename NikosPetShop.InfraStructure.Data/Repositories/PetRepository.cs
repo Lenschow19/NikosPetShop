@@ -11,14 +11,14 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
         static int id = 1;
         private static List<Pet> _pets = new List<Pet>();
 
-        public Pet Create(Pet pet)
+        public Pet CreatePet(Pet pet)
         {
             pet.Id = id++;
             _pets.Add(pet);
             return pet;
         }
 
-        public Pet ReadById(int id)
+        public Pet ReadPetById(int id)
         {
             foreach (var pet in _pets)
             {
@@ -37,9 +37,9 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
         }
 
         //Remove later when we use UOW
-        public Pet Update(Pet petUpdate)
+        public Pet UpdatePet(Pet petUpdate)
         {
-            var petFromDB = this.ReadById(petUpdate.Id);
+            var petFromDB = this.ReadPetById(petUpdate.Id);
             if (petFromDB != null)
             {
                 petFromDB.Name = petUpdate.Name;
@@ -55,9 +55,9 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
             return null;
         }
 
-        public Pet Delete(int id)
+        public Pet DeletePet(int id)
         {
-            var petFound = ReadById(id);
+            var petFound = ReadPetById(id);
             if (petFound != null)
             {
                 _pets.Remove(petFound);

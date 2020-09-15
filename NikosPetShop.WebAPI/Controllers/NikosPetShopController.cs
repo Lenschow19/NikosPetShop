@@ -29,9 +29,9 @@ namespace NikosPetShop.WebAPI.Controllers
 
         // GET api/<NikosPetShopController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Pet Get(int id)
         {
-            return "value";
+            return _petService.FindPetById(id);
         }
 
         // POST api/<NikosPetShopController>
@@ -43,10 +43,11 @@ namespace NikosPetShop.WebAPI.Controllers
 
         // PUT api/<NikosPetShopController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Pet pet)
         {
-
-            _petService.UpdatePet()
+            var petUpdate = pet;
+            petUpdate.Id = id;
+            _petService.UpdatePet(petUpdate);
         }
 
         // DELETE api/<NikosPetShopController>/5

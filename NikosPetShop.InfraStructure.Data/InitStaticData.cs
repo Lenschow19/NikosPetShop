@@ -11,17 +11,19 @@ namespace NikosPetShop.InfraStructure.Static.Data
     {
         #region Repostitory Area
         IPetRepository PetRepository;
+        IOwnerRepository OwnerRepository;
         #endregion
 
-        public InitStaticData(IPetRepository petRepository)
+        public InitStaticData(IPetRepository petRepository, IOwnerRepository ownerRepository)
         {
             this.PetRepository = petRepository;
+            this.OwnerRepository = ownerRepository;
         }
 
         #region InitData
         public void InitData()
         {
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Bob",
                 Color = "Black",
@@ -32,7 +34,7 @@ namespace NikosPetShop.InfraStructure.Static.Data
             });
 
 
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Gunnar",
                 Color = "Orange",
@@ -44,7 +46,7 @@ namespace NikosPetShop.InfraStructure.Static.Data
             });
 
 
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Bille",
                 Color = "Brown",
@@ -54,7 +56,7 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Price = 100
             });
 
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Finn",
                 Color = "Orange",
@@ -64,7 +66,7 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Price = 15648
             });
 
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Jens",
                 Color = "Black",
@@ -74,7 +76,7 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Price = 999
             });
 
-            PetRepository.Create(new Pet
+            PetRepository.CreatePet(new Pet
             {
                 Name = "Abracadabra",
                 Color = "Rainbow",
@@ -83,6 +85,34 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 PreviousOwner = "Egoin",
                 Price = 1555550
             });
+
+            OwnerRepository.CreateOwner(new Owner
+            {
+                FirstName = "Mia",
+                LastName = "Andersen",
+                Address = "Aldervej 4",
+                PhoneNumber = "36665496",
+                Email = "Mia.Andersen@Hotmail.com"
+            });
+
+            OwnerRepository.CreateOwner(new Owner
+            {
+                FirstName = "Bent",
+                LastName = "Petersen",
+                Address = "Gl. Kongevej 96",
+                PhoneNumber = "96385215",
+                Email = "BP96@gmail.com"
+            });
+
+            OwnerRepository.CreateOwner(new Owner
+            {
+                FirstName = "Henning",
+                LastName = "Andersen",
+                Address = "Aldervej 4",
+                PhoneNumber = "12345687",
+                Email = "Henning@Andersen.dk"
+            });
+
         }
         #endregion
     }

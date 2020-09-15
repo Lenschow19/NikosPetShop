@@ -35,7 +35,7 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
 
         public Pet CreatePet(Pet pet)
         {
-            return _petRepo.Create(pet);
+            return _petRepo.CreatePet(pet);
         }
 
         public List<Pet> GetPets()
@@ -53,7 +53,7 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
 
         public Pet FindPetById(int id)
         {
-            return _petRepo.ReadById(id);
+            return _petRepo.ReadPetById(id);
         }
 
         public Pet UpdatePet(Pet petUpdate)
@@ -71,7 +71,7 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
 
         public Pet DeletePet(int id)
         {
-            return _petRepo.Delete(id);
+            return _petRepo.DeletePet(id);
         }
 
         public List<Pet> GetAllPetsBySpecies(Species species)
