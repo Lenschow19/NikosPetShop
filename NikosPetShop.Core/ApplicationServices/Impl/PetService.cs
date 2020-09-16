@@ -25,7 +25,6 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
                 TypeOfSpecies = species,
                 Birthdate = birthDate,
                 SoldDate = soldDate,
-                PreviousOwner = previousOwner,
                 Price = price
             };
 
@@ -35,6 +34,10 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
 
         public Pet CreatePet(Pet pet)
         {
+            if (_petRepo == null)
+            {
+                return null;
+            }
             return _petRepo.CreatePet(pet);
         }
 
@@ -64,14 +67,24 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             pet.TypeOfSpecies = petUpdate.TypeOfSpecies;
             pet.Birthdate = petUpdate.Birthdate;
             pet.SoldDate = petUpdate.SoldDate;
-            pet.PreviousOwner = petUpdate.PreviousOwner;
             pet.Price = petUpdate.Price;
             return pet;
         }
 
         public Pet DeletePet(int id)
         {
-            return _petRepo.DeletePet(id);
+            if (id <= 0)
+            {
+                throw new ArgumentException("Please enter valid ID.");
+            }
+            if (FindPetById(id) == null)
+            {
+                throw new ArgumentException("Entered ID does not match with a pet.");
+            }
+            else 
+            {
+                return _petRepo.DeletePet(id);
+            }
         }
 
         public List<Pet> GetAllPetsBySpecies(Species species)

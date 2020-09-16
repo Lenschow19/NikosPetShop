@@ -5,31 +5,60 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NikosPetShop.InfraStructure.Static.Data
+namespace NikosPetShop.InfraStructure.Data
 {
     public class InitStaticData
     {
         #region Repostitory Area
         IPetRepository PetRepository;
         IOwnerRepository OwnerRepository;
+        IPetTypeRepository PetTypeRepository;
         #endregion
 
-        public InitStaticData(IPetRepository petRepository, IOwnerRepository ownerRepository)
+        public InitStaticData(IPetRepository petRepository, IOwnerRepository ownerRepository, IPetTypeRepository petTypeRepository)
         {
             this.PetRepository = petRepository;
             this.OwnerRepository = ownerRepository;
+            this.PetTypeRepository = petTypeRepository;
         }
 
         #region InitData
         public void InitData()
         {
+
+            PetType dog = new PetType { NameOfPetType = "Dog" }; 
+            PetType cat = new PetType { NameOfPetType = "Cat" };
+            PetType tarantula = new PetType { NameOfPetType = "Tarantula" };
+            PetType snake = new PetType { NameOfPetType = "Snake" };
+            PetType mouse = new PetType { NameOfPetType = "Mouse" };
+            PetType hamster = new PetType { NameOfPetType = "Hamster" };
+            PetType rabbit = new PetType { NameOfPetType = "Rabbit" };
+            PetType chincilla = new PetType { NameOfPetType = "Chinchilla" };
+            PetType guineaPig = new PetType { NameOfPetType = "Guinea Pig" };
+            PetType piglet = new PetType { NameOfPetType = "Piglet" };
+            PetType fish = new PetType { NameOfPetType = "Fish" };
+
+
+            PetTypeRepository.AddPetType(dog);
+            PetTypeRepository.AddPetType(cat);
+            PetTypeRepository.AddPetType(tarantula);
+            PetTypeRepository.AddPetType(snake);
+            PetTypeRepository.AddPetType(mouse);
+            PetTypeRepository.AddPetType(hamster);
+            PetTypeRepository.AddPetType(rabbit);
+            PetTypeRepository.AddPetType(chincilla);
+            PetTypeRepository.AddPetType(guineaPig);
+            PetTypeRepository.AddPetType(piglet);
+            PetTypeRepository.AddPetType(fish);
+
+
+
             PetRepository.CreatePet(new Pet
             {
                 Name = "Bob",
                 Color = "Black",
                 TypeOfSpecies = Species.Cat,
                 Birthdate = DateTime.Parse("02-02-2002"),
-                PreviousOwner = "Egoin",
                 Price = 1000000
             });
 
@@ -41,7 +70,6 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 TypeOfSpecies = Species.Guinea_Pig,
                 Birthdate = DateTime.Parse("12-12-2012"),
                 SoldDate = DateTime.Parse("12-02-2013"),
-                PreviousOwner = "Henning",
                 Price = 150
             });
 
@@ -52,7 +80,6 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Color = "Brown",
                 TypeOfSpecies = Species.Chinchillas,
                 Birthdate = DateTime.Parse("02-02-2018"),
-                PreviousOwner = "Enk",
                 Price = 100
             });
 
@@ -62,7 +89,6 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Color = "Orange",
                 TypeOfSpecies = Species.Rabbit,
                 Birthdate = DateTime.Parse("05-06-2006"),
-                PreviousOwner = "Egg",
                 Price = 15648
             });
 
@@ -72,7 +98,6 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Color = "Black",
                 TypeOfSpecies = Species.Piglet,
                 Birthdate = DateTime.Parse("05-12-2019"),
-                PreviousOwner = "Bent",
                 Price = 999
             });
 
@@ -82,7 +107,6 @@ namespace NikosPetShop.InfraStructure.Static.Data
                 Color = "Rainbow",
                 TypeOfSpecies = Species.Guinea_Pig,
                 Birthdate = DateTime.Parse("02-02-2020"),
-                PreviousOwner = "Egoin",
                 Price = 1555550
             });
 

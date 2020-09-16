@@ -12,36 +12,36 @@ namespace NikosPetShop.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NikosPetShopController : ControllerBase
+    public class PetController : ControllerBase
     {
         private readonly IPetService _petService;
-        public NikosPetShopController(IPetService petService)
+        public PetController(IPetService petService)
         {
             _petService = petService;
         }
 
-        // GET: api/<NikosPetShopController>
+        // GET: api/<PetController>
         [HttpGet]
         public IEnumerable<Pet> GetAllPets()
         {
             return _petService.GetPets();
         }
 
-        // GET api/<NikosPetShopController>/5
+        // GET api/<PetController>/5
         [HttpGet("{id}")]
         public Pet Get(int id)
         {
             return _petService.FindPetById(id);
         }
 
-        // POST api/<NikosPetShopController>
+        // POST api/<PetController>
         [HttpPost]
         public void Post([FromBody] Pet pet)
         {
             _petService.CreatePet(pet);
         }
 
-        // PUT api/<NikosPetShopController>/5
+        // PUT api/<PetController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] Pet pet)
         {
@@ -50,7 +50,7 @@ namespace NikosPetShop.WebAPI.Controllers
             _petService.UpdatePet(petUpdate);
         }
 
-        // DELETE api/<NikosPetShopController>/5
+        // DELETE api/<PetController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
