@@ -9,6 +9,7 @@ namespace NikosPetShop.Core.DomainServices
     {
         PetType AddPetType(PetType type);
         IEnumerable<PetType> ReadTypes();
+        IEnumerable<PetType> ReadAllPetTypesWithFilter(Filter filter);
         PetType GetPetTypeByID(int ID);
         PetType UpdatePetType(PetType type);
         PetType DeletePetType(int ID);

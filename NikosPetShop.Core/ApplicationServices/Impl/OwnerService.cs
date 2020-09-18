@@ -47,19 +47,28 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             return _ownerRepo.ReadOwnerById(id);
         }
 
-        public Owner UpdateOwner(Owner ownerUpdate)
-        {
-            var owner = GetOwnerById(ownerUpdate.Id);
-            owner.FirstName = ownerUpdate.FirstName;
-            owner.LastName = ownerUpdate.LastName;
-            owner.Address = ownerUpdate.Address;
-            owner.PhoneNumber = ownerUpdate.PhoneNumber;
-            owner.Email = ownerUpdate.Email;            
-            return owner;
-        }
         public Owner DeleteOwner(int id)
         {
             return _ownerRepo.DeleteOwner(id);
+        }
+
+        public Owner UpdateOwner(Owner owner, int id)
+        {
+            if (GetOwnerById(id) == null)
+            {
+                throw new ArgumentException("Owner with entered ID not found.");
+            }
+            if (owner == null)
+            {
+                throw new ArgumentException("Can't find owner with entered ID.");
+            }
+            owner.Id = id;
+            return _ownerRepo.UpdateOwner(owner);
+        }
+
+        public List<Owner> GetOwnersWithFilter(Filter filter)
+        {
+            return _ownerRepo.ReadAllOwnersWithFilter(filter).ToList();
         }
     }
 }

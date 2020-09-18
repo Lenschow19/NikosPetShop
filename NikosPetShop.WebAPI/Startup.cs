@@ -13,9 +13,8 @@ using Microsoft.Extensions.Logging;
 using NikosPetShop.Core.ApplicationServices;
 using NikosPetShop.Core.ApplicationServices.Impl;
 using NikosPetShop.Core.DomainServices;
-using NikosPetShop.InfraStructure.Static.Data;
-using NikosPetShop.InfraStructure.Static.Data.Repositories;
-
+using NikosPetShop.InfraStructure.Data;
+using NikosPetShop.InfraStructure.Data.Repositories;
 namespace NikosPetShop.WebAPI
 {
     public class Startup
@@ -32,6 +31,10 @@ namespace NikosPetShop.WebAPI
         {
             services.AddScoped<IPetRepository, PetRepository>();
             services.AddScoped<IPetService, PetService>();
+            services.AddSingleton<IOwnerRepository, OwnerRepository>();
+            services.AddScoped<IOwnerService, OwnerService>();
+            services.AddSingleton<IPetTypeRepository, PetTypeRepository>();
+            services.AddScoped<IPetTypeService, PetTypeService>();
             services.AddScoped<InitStaticData>();
             services.AddControllers();
         }

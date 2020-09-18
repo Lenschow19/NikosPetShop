@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.Core.Entity", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.Core", "NikosPetShop.Core\NikosPetShop.Core.csproj", "{46795B2F-18A8-48C8-8843-A536124C33E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.InfraStructure.Static.Data", "NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Static.Data.csproj", "{E0023269-FDC1-4F3F-8D9D-905E2908B3AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.InfraStructure.Data", "NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Data.csproj", "{E0023269-FDC1-4F3F-8D9D-905E2908B3AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NikosPetShop.WebAPI", "NikosPetShop.WebAPI\NikosPetShop.WebAPI.csproj", "{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.WebAPI", "NikosPetShop.WebAPI\NikosPetShop.WebAPI.csproj", "{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

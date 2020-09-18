@@ -15,6 +15,7 @@ namespace NikosPetShop.Core.DomainServices
         //Read Data
         Pet ReadPetById(int id);
         IEnumerable<Pet> ReadAllPets();
+        IEnumerable<Pet> ReadAllPetsWithFilter(Filter filter);
         //Update Data
         Pet UpdatePet(Pet petUpdate);
         //Delete Data

@@ -10,28 +10,27 @@ namespace NikosPetShop.InfraStructure.Data.Repositories
     public class PetTypeRepository : IPetTypeRepository
     {
         private int Id;
-        private IEnumerable<PetType> PetTypes;
+        private IEnumerable<PetType> _petTypes = new List<PetType>();
 
         public PetTypeRepository()
         {
             this.Id = 0;
-            this.PetTypes = new List<PetType>();
         }
 
         public PetType AddPetType(PetType type)
         {
             Id++;
             type.Id = Id;
-            ((List<PetType>)PetTypes).Add(type);
+            ((List<PetType>)_petTypes).Add(type);
             return type;
         }
 
         public PetType DeletePetType(int ID)
         {
-            PetType petType = PetTypes.Where((x) => { return x.Id == ID; }).FirstOrDefault();
+            PetType petType = _petTypes.Where((x) => { return x.Id == ID; }).FirstOrDefault();
             if (petType != null)
             {
-                ((List<PetType>)PetTypes).Remove(petType);
+                ((List<PetType>)_petTypes).Remove(petType);
                 return petType;
             }
             return null;
@@ -44,12 +43,22 @@ namespace NikosPetShop.InfraStructure.Data.Repositories
 
         public IEnumerable<PetType> ReadTypes()
         {
-            return PetTypes;
+            return _petTypes;
+        }
+
+        public IEnumerable<PetType> ReadAllPetTypesWithFilter(Filter filter)
+        {
+            IEnumerable<PetType> petTypes = _petTypes.AsEnumerable();
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                petTypes = from x in petTypes where x.NameOfPetType.ToLower().Contains(filter.Name.ToLower()) select x;
+            }
+            return petTypes.ToList();
         }
 
         public PetType UpdatePetType(PetType type)
         {
-            PetType petType = ((List<PetType>)PetTypes).Find((x) => { return x.Id == type.Id; });
+            PetType petType = ((List<PetType>)_petTypes).Find((x) => { return x.Id == type.Id; });
             if (petType != null)
             {
                 petType.NameOfPetType = type.NameOfPetType;

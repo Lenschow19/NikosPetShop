@@ -12,8 +12,9 @@ namespace NikosPetShop.Core.DomainServices
         //Read Data
         Owner ReadOwnerById(int id);
         IEnumerable<Owner> ReadAllOwners();
+        IEnumerable<Owner> ReadAllOwnersWithFilter(Filter filter);
         //Update Data
-        Owner UpdateOwner(Owner ownerUpdate);
+        Owner UpdateOwner(Owner owner);
         //Delete Data
         Owner DeleteOwner(int id);
     }

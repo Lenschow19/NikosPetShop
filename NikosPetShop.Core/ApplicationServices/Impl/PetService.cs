@@ -16,15 +16,16 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             _petRepo = petRepository;
         }
 
-        public Pet NewPet(string name, string color, DateTime birthDate, Species species, DateTime soldDate, string previousOwner, double price)
+        public Pet NewPet(string name, string color, DateTime birthDate, PetType petType, DateTime soldDate, Owner owner, double price)
         {
             var pet = new Pet()
             {
                 Name = name,
                 Color = color,
-                TypeOfSpecies = species,
                 Birthdate = birthDate,
+                PetType = petType,
                 SoldDate = soldDate,
+                Owner = owner,
                 Price = price
             };
 
@@ -46,6 +47,11 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             return _petRepo.ReadAllPets().ToList();
         }
 
+        public List<Pet> GetPetsWithFilter(Filter filter)
+        {
+            return _petRepo.ReadAllPetsWithFilter(filter).ToList();
+        }
+
         public List<Pet> GetAllPetsByName(string name)
         {
             var list = _petRepo.ReadAllPets();
@@ -64,9 +70,10 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             var pet = FindPetById(petUpdate.Id);
             pet.Name = petUpdate.Name;
             pet.Color = petUpdate.Color;
-            pet.TypeOfSpecies = petUpdate.TypeOfSpecies;
+            pet.PetType = petUpdate.PetType;
             pet.Birthdate = petUpdate.Birthdate;
             pet.SoldDate = petUpdate.SoldDate;
+            pet.Owner = petUpdate.Owner;
             pet.Price = petUpdate.Price;
             return pet;
         }
@@ -87,12 +94,14 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             }
         }
 
-        public List<Pet> GetAllPetsBySpecies(Species species)
+        public List<Pet> GetAllPetsBySpecies(PetType petType)
         {
             var list = _petRepo.ReadAllPets();
-            var queryContinued = list.Where(pet => pet.TypeOfSpecies.Equals(species));
+            var queryContinued = list.Where(pet => pet.PetType.Id == petType.Id);
             queryContinued.OrderBy(pet => pet.Name);
             return queryContinued.ToList();
         }
+
+        
     }
 }

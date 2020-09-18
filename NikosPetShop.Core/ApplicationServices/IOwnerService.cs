@@ -13,6 +13,7 @@ namespace NikosPetShop.Core.ApplicationServices
         Owner CreateOwner(Owner owner);
         //Read
         List<Owner> GetAllOwners();
+        List<Owner> GetOwnersWithFilter(Filter filter);
         Owner GetOwnerById(int id);
         //Update
         Owner UpdateOwner(Owner owner, int id);

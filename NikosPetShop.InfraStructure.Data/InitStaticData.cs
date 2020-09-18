@@ -52,64 +52,6 @@ namespace NikosPetShop.InfraStructure.Data
             PetTypeRepository.AddPetType(fish);
 
 
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Bob",
-                Color = "Black",
-                TypeOfSpecies = Species.Cat,
-                Birthdate = DateTime.Parse("02-02-2002"),
-                Price = 1000000
-            });
-
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Gunnar",
-                Color = "Orange",
-                TypeOfSpecies = Species.Guinea_Pig,
-                Birthdate = DateTime.Parse("12-12-2012"),
-                SoldDate = DateTime.Parse("12-02-2013"),
-                Price = 150
-            });
-
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Bille",
-                Color = "Brown",
-                TypeOfSpecies = Species.Chinchillas,
-                Birthdate = DateTime.Parse("02-02-2018"),
-                Price = 100
-            });
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Finn",
-                Color = "Orange",
-                TypeOfSpecies = Species.Rabbit,
-                Birthdate = DateTime.Parse("05-06-2006"),
-                Price = 15648
-            });
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Jens",
-                Color = "Black",
-                TypeOfSpecies = Species.Piglet,
-                Birthdate = DateTime.Parse("05-12-2019"),
-                Price = 999
-            });
-
-            PetRepository.CreatePet(new Pet
-            {
-                Name = "Abracadabra",
-                Color = "Rainbow",
-                TypeOfSpecies = Species.Guinea_Pig,
-                Birthdate = DateTime.Parse("02-02-2020"),
-                Price = 1555550
-            });
-
             OwnerRepository.CreateOwner(new Owner
             {
                 FirstName = "Mia",
@@ -128,7 +70,7 @@ namespace NikosPetShop.InfraStructure.Data
                 Email = "BP96@gmail.com"
             });
 
-            OwnerRepository.CreateOwner(new Owner
+            Owner henning = OwnerRepository.CreateOwner(new Owner
             {
                 FirstName = "Henning",
                 LastName = "Andersen",
@@ -136,6 +78,66 @@ namespace NikosPetShop.InfraStructure.Data
                 PhoneNumber = "12345687",
                 Email = "Henning@Andersen.dk"
             });
+
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Bob",
+                Color = "Black",
+                PetType = cat,
+                Birthdate = DateTime.Parse("02-02-2002"),
+                Price = 1000000
+            });
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Gunnar",
+                Color = "Orange",
+                PetType = guineaPig,
+                Birthdate = DateTime.Parse("12-12-2012"),
+                SoldDate = DateTime.Parse("12-02-2013"),
+                Owner = henning,
+                Price = 150
+            });
+
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Bille",
+                Color = "Brown",
+                PetType = chincilla,
+                Birthdate = DateTime.Parse("02-02-2018"),
+                Price = 100
+            });
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Finn",
+                Color = "Orange",
+                PetType = rabbit,
+                Birthdate = DateTime.Parse("05-06-2006"),
+                Price = 15648
+            });
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Jens",
+                Color = "Black",
+                PetType = piglet,
+                Birthdate = DateTime.Parse("05-12-2019"),
+                Price = 999
+            });
+
+            PetRepository.CreatePet(new Pet
+            {
+                Name = "Abracadabra",
+                Color = "Rainbow",
+                PetType = guineaPig,
+                Birthdate = DateTime.Parse("02-02-2020"),
+                Price = 1555550
+            });
+
+            
 
         }
         #endregion

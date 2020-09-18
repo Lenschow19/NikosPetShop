@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NikosPetShop.Core.DomainServices;
 using NikosPetShop.Core.Entity;
 
-namespace NikosPetShop.InfraStructure.Static.Data.Repositories
+namespace NikosPetShop.InfraStructure.Data.Repositories
 {
     public class PetRepository: IPetRepository
     {
@@ -36,6 +37,28 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
             return _pets.AsReadOnly();
         }
 
+        public IEnumerable<Pet> ReadAllPetsWithFilter(Filter filter)
+        {
+            IEnumerable<Pet> pets = _pets.AsEnumerable();
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                pets = from x in pets where x.Name.ToLower().Contains(filter.Name.ToLower()) select x;
+            }
+            if (!string.IsNullOrEmpty(filter.Owner))
+            {
+                pets = from x in pets where x.Owner != null && x.Owner.FirstName.ToLower().Contains(filter.Owner.ToLower()) select x;
+            }
+            if (!string.IsNullOrEmpty(filter.Color))
+            {
+                pets = from x in pets where x.Color.ToLower().Contains(filter.Color.ToLower()) select x;
+            }
+            if (!string.IsNullOrEmpty(filter.PetType))
+            {
+                pets = from x in pets where x.PetType != null && x.PetType.NameOfPetType.ToLower().Contains(filter.PetType.ToLower()) select x;
+            }
+            return pets.ToList();
+        }
+
         //Remove later when we use UOW
         public Pet UpdatePet(Pet petUpdate)
         {
@@ -44,10 +67,10 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
             {
                 petFromDB.Name = petUpdate.Name;
                 petFromDB.Color = petUpdate.Color;
-                petFromDB.TypeOfSpecies = petUpdate.TypeOfSpecies;
+                petFromDB.PetType = petUpdate.PetType;
                 petFromDB.Birthdate = petUpdate.Birthdate;
                 petFromDB.SoldDate = petUpdate.SoldDate;
-                petFromDB.PreviousOwner = petUpdate.PreviousOwner;
+                petFromDB.Owner = petUpdate.Owner;
                 petFromDB.Price = petUpdate.Price;
                 return petFromDB;
             }
@@ -66,5 +89,7 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
 
             return null;
         }
+
+       
     }
 }

@@ -12,7 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NikosPetShop.Core.Entity\NikosPetShop.Core.Entity.csproj" />
     <ProjectReference Include="..\NikosPetShop.Core\NikosPetShop.Core.csproj" />
-    <ProjectReference Include="..\NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Static.Data.csproj" />
+    <ProjectReference Include="..\NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Data.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,11 +9,11 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
 {
     public class PetTypeService : IPetTypeService
     {
-        private IPetTypeRepository PetTypeRepository;
+        private IPetTypeRepository _petTypeRepository;
 
         public PetTypeService(IPetTypeRepository petTypeRepository)
         {
-            this.PetTypeRepository = petTypeRepository;
+            this._petTypeRepository = petTypeRepository;
         }
 
         public PetType AddPetType(PetType petType)
@@ -24,7 +24,7 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
                 {
                     throw new ArgumentException("Pet type already exists");
                 }
-                return PetTypeRepository.AddPetType(petType);
+                return _petTypeRepository.AddPetType(petType);
             }
             return null;
         }
@@ -48,27 +48,22 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
             {
                 throw new ArgumentException("Can't find pet type with entered ID.");
             }
-            return PetTypeRepository.DeletePetType(Id); ;
+            return _petTypeRepository.DeletePetType(Id); ;
         }
 
         public List<PetType> GetAllPetTypes()
         {
-            return PetTypeRepository.ReadTypes().ToList();
+            return _petTypeRepository.ReadTypes().ToList();
         }
 
         public PetType GetPetTypeByID(int ID)
         {
-            return PetTypeRepository.GetPetTypeByID(ID);
+            return _petTypeRepository.GetPetTypeByID(ID);
         }
 
-        public List<PetType> GetPetTypeByName(string searchTitle)
+        public List<PetType> GetPetTypesWithFilter(Filter filter)
         {
-            return SearchEngine.Search<PetType>(GetAllPetTypes(), searchTitle);
-        }
-
-        public List<PetType> GetPetTypesFilterSearch(Filter filter)
-        {
-            throw new NotImplementedException();
+            return _petTypeRepository.ReadAllPetTypesWithFilter(filter).ToList();
         }
 
         public PetType UpdatePetType(PetType type, int Id)
@@ -82,6 +77,7 @@ namespace NikosPetShop.Core.ApplicationServices.Impl
                 throw new ArgumentException("Can't find pet type to update on the entered ID.");
             }
             type.Id = Id;
-            return PetTypeRepository.UpdatePetType(type);
+            return _petTypeRepository.UpdatePetType(type);
         }
+    }
 }

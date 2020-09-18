@@ -22,39 +22,75 @@ namespace NikosPetShop.WebAPI.Controllers
 
         // GET: api/<PetController>
         [HttpGet]
-        public IEnumerable<Pet> GetAllPets()
+        public ActionResult<IEnumerable<Pet>> GetAllPets([FromQuery] Filter filter)
         {
-            return _petService.GetPets();
+            try
+            {
+                return Ok(_petService.GetPetsWithFilter(filter));
+            }
+            catch
+            {
+                return StatusCode(500, "An error occured while loading all pets.");
+            }
         }
 
         // GET api/<PetController>/5
         [HttpGet("{id}")]
-        public Pet Get(int id)
+        public ActionResult<Pet> Get(int id)
         {
-            return _petService.FindPetById(id);
+            Pet pet = _petService.FindPetById(id);
+            if (pet != null)
+            {
+                return Ok(pet);
+            }
+            return NotFound("Entered ID doesn't match a Pet.");
         }
 
         // POST api/<PetController>
         [HttpPost]
-        public void Post([FromBody] Pet pet)
+        public ActionResult<Pet> Post([FromBody] Pet pet)
         {
-            _petService.CreatePet(pet);
+            if (string.IsNullOrEmpty(pet.Name))
+            {
+                return BadRequest("The Pet needs a name.");
+            }
+            if (string.IsNullOrEmpty(pet.Color))
+            {
+                return BadRequest("Please specify the look of the Pet.");
+            }
+
+            return Created("",_petService.CreatePet(pet));
         }
 
         // PUT api/<PetController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Pet pet)
+        public ActionResult<Pet> Put(int id, [FromBody] Pet pet)
         {
+            if(string.IsNullOrEmpty(pet.Name))
+            {
+                return BadRequest("The Pet needs a name.");
+            }
+            if (string.IsNullOrEmpty(pet.Color))
+            {
+                return BadRequest("Please specify the look of the Pet.");
+            }
             var petUpdate = pet;
             petUpdate.Id = id;
-            _petService.UpdatePet(petUpdate);
+            return Accepted(_petService.UpdatePet(petUpdate));
         }
 
         // DELETE api/<PetController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult<int> Delete(int id)
         {
-            _petService.DeletePet(id);
+            try
+            {
+                return Ok(_petService.DeletePet(id));
+            }
+            catch
+            {
+                return StatusCode(500, "An error occured while deleting a pet.");
+            }
         }
     }
 }

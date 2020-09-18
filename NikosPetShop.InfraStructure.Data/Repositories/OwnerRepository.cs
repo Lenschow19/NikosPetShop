@@ -2,19 +2,19 @@
 using NikosPetShop.Core.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
-namespace NikosPetShop.InfraStructure.Static.Data.Repositories
+namespace NikosPetShop.InfraStructure.Data.Repositories
 {
     public class OwnerRepository : IOwnerRepository
     {
         private int id;
-        private List<Owner> _owners;
+        private List<Owner> _owners = new List<Owner>();
 
         public OwnerRepository()
         {
             this.id = 0;
-            this._owners = new List<Owner>();
         }
 
         public Owner CreateOwner(Owner owner)
@@ -39,11 +39,11 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
 
         public Owner DeleteOwner(int id)
         {
-            var petFound = ReadOwnerById(id);
-            if (petFound != null)
+            var ownerFound = ReadOwnerById(id);
+            if (ownerFound != null)
             {
-                _owners.Remove(petFound);
-                return petFound;
+                _owners.Remove(ownerFound);
+                return ownerFound;
             }
 
             return null;
@@ -54,20 +54,34 @@ namespace NikosPetShop.InfraStructure.Static.Data.Repositories
             return _owners.AsReadOnly();
         }
 
-        public Owner UpdateOwner(Owner ownerUpdate)
+        public IEnumerable<Owner> ReadAllOwnersWithFilter(Filter filter)
         {
-            var ownerFromDB = this.ReadOwnerById(ownerUpdate.Id);
-            if (ownerFromDB != null)
+            IEnumerable<Owner> owners = _owners.AsEnumerable();
+            if (!string.IsNullOrEmpty(filter.Name))
             {
-                ownerFromDB.FirstName = ownerUpdate.FirstName;
-                ownerFromDB.LastName = ownerUpdate.LastName;
-                ownerFromDB.Address = ownerUpdate.Address;
-                ownerFromDB.PhoneNumber = ownerUpdate.PhoneNumber;
-                ownerFromDB.Email = ownerUpdate.Email;
-                return ownerFromDB;
+                owners = from x in owners where x.FirstName.ToLower().Contains(filter.Name.ToLower()) select x;
             }
+            if (!string.IsNullOrEmpty(filter.Name))
+            {
+                owners = from x in owners where x.LastName.ToLower().Contains(filter.Owner.ToLower()) select x;
+            }
+            return owners.ToList();
+        }
 
-            return null; ;
+        public Owner UpdateOwner(Owner owner)
+        {
+            Owner ownerToUpdate = ((List<Owner>)_owners).Find((x) => { return x.Id == owner.Id; });
+            if (ownerToUpdate != null)
+            {
+                ownerToUpdate.FirstName = owner.FirstName;
+                ownerToUpdate.LastName = owner.LastName;
+                ownerToUpdate.Address = owner.Address;
+                ownerToUpdate.PhoneNumber = owner.PhoneNumber;
+                ownerToUpdate.Email = owner.Email;
+
+                return ownerToUpdate;
+            }
+            return null;
         }
     }
 }
