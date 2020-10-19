@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NikosPetShop.Core.ApplicationServices;
 using NikosPetShop.Core.Entity;
@@ -22,6 +23,7 @@ namespace NikosPetShop.WebAPI.Controllers
 
         // GET: api/<PetController>
         [HttpGet]
+        [Authorize(Roles = "User")]
         public ActionResult<IEnumerable<Pet>> GetAllPets([FromQuery] Filter filter)
         {
             try

@@ -5,9 +5,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Core" Version="3.1.8" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\NikosPetShop.Core.Entity\NikosPetShop.Core.Entity.csproj" />
     <ProjectReference Include="..\NikosPetShop.Core\NikosPetShop.Core.csproj" />
     <ProjectReference Include="..\NikosPetShop.InfraStructure.Data\NikosPetShop.InfraStructure.Data.csproj" />
+    <ProjectReference Include="..\NikosPetShop.Infrastructure.DBInitialization\NikosPetShop.Infrastructure.DBInitialization.csproj" />
+    <ProjectReference Include="..\NikosPetShop.Infrastructure.Security\NikosPetShop.Infrastructure.Security.csproj" />
+    <ProjectReference Include="..\NikosPetShop.Infrastructure.SQLite.Data\NikosPetShop.Infrastructure.SQLite.Data.csproj" />
   </ItemGroup>
 
 

@@ -1,32 +1,37 @@
 ﻿using NikosPetShop.Core.ApplicationServices;
+using NikosPetShop.Core.ApplicationServices.Impl;
 using NikosPetShop.Core.DomainServices;
 using NikosPetShop.Core.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NikosPetShop.InfraStructure.Data
+namespace NikosPetShop.Infrastructure.DBInitialization
 {
-    public class InitStaticData
+    public class DBInitializer
     {
         #region Repostitory Area
         IPetRepository PetRepository;
         IOwnerRepository OwnerRepository;
         IPetTypeRepository PetTypeRepository;
+        IUserService UserService;
+        IUserRepository UserRepository;
         #endregion
 
-        public InitStaticData(IPetRepository petRepository, IOwnerRepository ownerRepository, IPetTypeRepository petTypeRepository)
+        public DBInitializer(IPetRepository petRepository, IOwnerRepository ownerRepository, IPetTypeRepository petTypeRepository, IUserRepository userRepository, IUserService userService)
         {
             this.PetRepository = petRepository;
             this.OwnerRepository = ownerRepository;
             this.PetTypeRepository = petTypeRepository;
+            this.UserService = userService;
+            this.UserRepository = userRepository;
         }
 
         #region InitData
         public void InitData()
         {
 
-            PetType dog = new PetType { NameOfPetType = "Dog" }; 
+            PetType dog = new PetType { NameOfPetType = "Dog" };
             PetType cat = new PetType { NameOfPetType = "Cat" };
             PetType tarantula = new PetType { NameOfPetType = "Tarantula" };
             PetType snake = new PetType { NameOfPetType = "Snake" };
@@ -137,9 +142,11 @@ namespace NikosPetShop.InfraStructure.Data
                 Price = 1555550
             });
 
-            
+            UserRepository.AddUser(UserService.CreateUser("Bent", "Ersej", "Admin"));
+            UserRepository.AddUser(UserService.CreateUser("Pia", "Harpigelus", "User"));
 
         }
         #endregion
+
     }
 }

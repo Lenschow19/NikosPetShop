@@ -13,6 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.InfraStructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.WebAPI", "NikosPetShop.WebAPI\NikosPetShop.WebAPI.csproj", "{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.Infrastructure.SQLite.Data", "NikosPetShop.Infrastructure.SQLite.Data\NikosPetShop.Infrastructure.SQLite.Data.csproj", "{2A17FC88-44ED-464F-9474-4B59EC83B302}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NikosPetShop.Infrastructure.DBInitialization", "NikosPetShop.Infrastructure.DBInitialization\NikosPetShop.Infrastructure.DBInitialization.csproj", "{467F2BD7-DD70-4497-8242-5FC1772FF07B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NikosPetShop.Infrastructure.Security", "NikosPetShop.Infrastructure.Security\NikosPetShop.Infrastructure.Security.csproj", "{8F17838F-D4A1-44CF-8533-69D0879E5DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +45,18 @@ Global
 		{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC6FB895-686F-4E75-9DE1-EA5D20EC8553}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A17FC88-44ED-464F-9474-4B59EC83B302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A17FC88-44ED-464F-9474-4B59EC83B302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A17FC88-44ED-464F-9474-4B59EC83B302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A17FC88-44ED-464F-9474-4B59EC83B302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{467F2BD7-DD70-4497-8242-5FC1772FF07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{467F2BD7-DD70-4497-8242-5FC1772FF07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{467F2BD7-DD70-4497-8242-5FC1772FF07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{467F2BD7-DD70-4497-8242-5FC1772FF07B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F17838F-D4A1-44CF-8533-69D0879E5DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F17838F-D4A1-44CF-8533-69D0879E5DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F17838F-D4A1-44CF-8533-69D0879E5DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F17838F-D4A1-44CF-8533-69D0879E5DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
